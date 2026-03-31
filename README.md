@@ -1,1 +1,347 @@
-# uhmpickleball
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hawaii Pickleball Club | UHM</title>
+    <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Inter:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        :root {
+            --dark-green: #1b5e20;
+            --mid-green: #2e7d32;
+            --neon-green: #a2d149;
+            --white: #ffffff;
+            --light-gray: #f8f9fa;
+        }
+        * { box-sizing: border-box; }
+        body { 
+            font-family: 'Inter', sans-serif; 
+            margin: 0; 
+            padding: 0; 
+            line-height: 1.6; 
+            color: #333;
+            background-color: var(--white);
+        }
+        /* TYPOGRAPHY */
+        h1, h2, h3, .logo, .nav-links a {
+            font-family: 'Archivo Black', sans-serif;
+            text-transform: uppercase;
+            letter-spacing: -1px;
+        }
+        /* Navigation */
+        nav { 
+            background: var(--dark-green); 
+            padding: 0 5%; 
+            display: flex; 
+            justify-content: space-between; 
+            align-items: center; 
+            position: sticky; 
+            top: 0; 
+            z-index: 1000; 
+            height: 80px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+        .logo { 
+            color: var(--neon-green); 
+            font-size: 1.5rem; 
+            cursor: pointer;
+        }
+        .nav-links { display: flex; list-style: none; margin: 0; padding: 0; }
+        .nav-links li { position: relative; }
+        .nav-links a { 
+            color: white; 
+            text-decoration: none; 
+            padding: 30px 20px; 
+            display: block; 
+            font-size: 0.9rem;
+            transition: 0.3s;
+            cursor: pointer;
+        }
+        .nav-links a:hover { color: var(--neon-green); }
+        /* Dropdown */
+        .dropdown-content { 
+            display: none; 
+            position: absolute; 
+            background: var(--white); 
+            min-width: 200px; 
+            box-shadow: 0px 8px 16px rgba(0,0,0,0.15); 
+            top: 80px;
+        }
+        .dropdown-content a { 
+            color: var(--dark-green); 
+            padding: 15px 20px; 
+            border-bottom: 1px solid #eee; 
+            font-size: 0.8rem;
+        }
+        .dropdown-content a:hover { background: var(--light-gray); color: var(--mid-green); }
+        .nav-links li:hover .dropdown-content { display: block; }
+        /* Sections */
+        .page-section { display: none; padding: 80px 10%; max-width: 1200px; margin: auto; animation: fadeIn 0.4s ease-in; }
+        .active { display: block; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+        /* Hero Image */
+        .hero { 
+            background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.6)), url('https://previews.dropbox.com/p/thumb/AC8pBcWlwhSNBeYZySmHFv0bDPE7sfDkquIZGnRrH8KpDINYK1JIMqrVPK5bL5H6uPSJNnm-TSw0I875yYvE8LEj2Q0h4OIaxfbIqjq39bFF4CWhwyfAzcaD3z0STHRR47LE88FlAUJfvn6UU4tsBXcLBtIknSLMk8jZgVaFUadox1cPTat6jfYFChcJPOCnmt_vrsjB4-SlSDnWg1SZBf-knpH4hEHB2eAE343evomohgfon-sx8s6kIlOhIBJOAKygEWXQ_pM6IsGMy2TMunbmJCK-qP_jeuvmKCYs2oxviw/p.png'); 
+            height: 500px; 
+            background-size: cover; 
+            background-position: center; 
+            display: flex; 
+            align-items: center; 
+            justify-content: center; 
+            color: white; 
+            text-align: center;
+            border-bottom: 8px solid var(--neon-green);
+        }
+        .hero h1 { font-size: 4rem; margin: 0; text-shadow: 3px 3px 0px var(--dark-green); }
+        /* Sponsors Grid */
+        .sponsor-container { text-align: center; padding: 60px 0; border-top: 1px solid #eee; margin-top: 40px; }
+        .sponsor-grid { 
+            display: flex; 
+            justify-content: center; 
+            gap: 80px; 
+            align-items: flex-start; 
+            flex-wrap: wrap; 
+            margin-top: 30px; 
+        }
+        .sponsor-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-decoration: none;
+            transition: 0.3s;
+        }
+        .sponsor-item:hover { transform: translateY(-5px); }
+        .sponsor-item img {
+            height: 80px; /* Adjust based on logo shape */
+            width: auto;
+            margin-bottom: 15px;
+            filter: grayscale(100%);
+            transition: 0.3s;
+        }
+        .sponsor-item:hover img { filter: grayscale(0%); }
+        .sponsor-logo-text { 
+            font-family: 'Archivo Black', sans-serif; 
+            font-size: 1.2rem; 
+            color: #777; 
+        }
+        .sponsor-item:hover .sponsor-logo-text { color: var(--dark-green); }
+        /* Support Us Section */
+        .support-card {
+            background: var(--neon-green);
+            color: var(--dark-green);
+            padding: 50px;
+            border-radius: 20px;
+            text-align: center;
+            margin: 40px 0;
+        }
+        .gofundme-btn {
+            display: inline-block;
+            background: var(--dark-green);
+            color: white;
+            padding: 18px 35px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-family: 'Archivo Black', sans-serif;
+            font-size: 1.1rem;
+            margin-top: 25px;
+            transition: 0.3s ease;
+        }
+        .gofundme-btn:hover { background: #000; transform: translateY(-3px); }
+        .qr-placeholder {
+            width: 180px;
+            height: 180px;
+            background: white;
+            margin: 20px auto;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 5px solid var(--dark-green);
+            border-radius: 10px;
+        }
+        /* Gallery Grid */
+        .tournament-block { margin-bottom: 60px; }
+        .gallery { 
+            display: grid; 
+            grid-template-columns: repeat(4, 1fr); 
+            gap: 15px; 
+            margin-top: 20px; 
+        }
+        .gallery-item { 
+            aspect-ratio: 1 / 1; 
+            background: #eee; 
+            border-radius: 4px; 
+            background-size: cover; 
+            background-position: center;
+            border: 2px solid var(--neon-green);
+        }
+        /* Contact Section */
+        .contact-card { 
+            background: var(--light-gray); 
+            padding: 50px; 
+            border-radius: 20px; 
+            text-align: center; 
+            border-bottom: 5px solid var(--mid-green);
+        }
+        .social-link { 
+            display: inline-block; 
+            color: #E1306C; 
+            text-decoration: none; 
+            font-size: 1.5rem; 
+            font-weight: bold; 
+            margin: 20px 0;
+        }
+        .email-display { 
+            display: block; 
+            font-family: 'Archivo Black', sans-serif;
+            color: var(--dark-green); 
+            font-size: 1.2rem; 
+            margin-top: 10px;
+        }
+        footer { background: #111; color: #777; text-align: center; padding: 30px; font-size: 0.8rem; }
+        @media (max-width: 768px) {
+            .gallery { grid-template-columns: repeat(2, 1fr); }
+            .hero h1 { font-size: 2.5rem; }
+            .sponsor-grid { gap: 40px; }
+        }
+    </style>
+</head>
+<body>
+
+<nav>
+    <div class="logo" onclick="showPage('home')">HAWAII PICKLEBALL CLUB</div>
+    <ul class="nav-links">
+        <li><a onclick="showPage('home')">HOME</a></li>
+        <li><a onclick="showPage('about')">ABOUT</a></li>
+        <li>
+            <a>EVENTS ▾</a>
+            <div class="dropdown-content">
+                <a onclick="showPage('open-play')">Open Play</a>
+                <a onclick="showPage('tournaments')">Tournaments</a>
+            </div>
+        </li>
+    </ul>
+</nav>
+
+<div id="home" class="page-section active">
+    <div class="hero">
+        <h1>HAWAII <br> PICKLEBALL <br> CLUB</h1>
+    </div>
+    <div style="text-align:center; padding-top: 50px;">
+        <h2>The #1 Club at UHM</h2>
+        <p>Bringing the energy to the University of Hawaii at Manoa Tennis Courts.</p>
+    </div>
+    <div class="sponsor-container">
+        <h3>Mahalo to our Sponsors</h3>
+        <div class="sponsor-grid">
+            <div class="sponsor-item">
+                <img src="https://thepickleballdinks.com/_next/image?url=https%3A%2F%2Fcdn.sanity.io%2Fimages%2Fzuyt4kfy%2Fproduction%2F000467b1c80d00c2fba8485f8ed7ca352fec7a47-300x300.png&w=2048&q=75" alt="Joola Logo">
+                <span class="sponsor-logo-text">JOOLA</span>
+            </div>
+            <div class="sponsor-item">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRpf9ESawlacpQfbPbk10LV8kc6uRh2l-rbvA&s" alt="PickAloha Logo">
+                <span class="sponsor-logo-text">PICKALOHA</span>
+            </div>
+        </div>
+    </div>
+    <div class="support-card">
+        <h2>Want to support our cause?</h2>
+        <p>Help our student athletes compete on the national stage. Every donation goes toward equipment and tournament travel!</p>
+        <div class="qr-placeholder">
+            <img src="https://previews.dropbox.com/p/thumb/AC-WRdeWi8L6yf-f62IGQ4OHwyk-gS3bs5hJjQtne2XZvazcHYwMSESkUaF_Nu_kacPCnRSjG1baedCnehwkqF08AM7I61J8FrFuWwfi6oBLMZq3e9fNy70r4gTBIinynP2llBPhaUVCYPzMHxPvEOaIUwY_4h1edjBi-9L32Y3lRjpJpfcTxXf3i8lDYfXtCouDK4zjAZm0Zw5dABA4vP-Z5njseSZK390hb6teqeYe29su6d7lehZlTL_95xousuWPrd5qIxNNK_T2bj47viXl8Jp3hRRwePXTiBAVgvaxfQ/p.png" alt="GoFundMe QR Code" style="width: 100%; height: 100%; border-radius: 5px; object-fit: contain;">
+        </div>
+        <p><strong>Scan the QR code or click below:</strong></p>
+        <a href="https://gofund.me/df1d1eddf" target="_blank" class="gofundme-btn">
+            SUPPORT US ON GOFUNDME <i class="fas fa-heart"></i>
+        </a>
+    </div>
+    <h1 style="margin-top: 80px;">Contact Us</h1>
+    <div class="contact-card">
+        <h2>Get Connected</h2>
+        <p>Want to join the club or have questions about our upcoming events?</p> 
+        <a href="https://instagram.com/hawaiipickleballclub" target="_blank" class="social-link">
+            <i class="fab fa-instagram"></i> Follow us @hawaiipickleballclub
+        </a>
+        <div style="margin-top: 30px;">
+            <span style="font-weight: bold; color: #777;">EMAIL US DIRECTLY:</span>
+            <span class="email-display">uhmpickleball@gmail.com</span>
+        </div>
+    </div>
+</div>
+
+<div id="about" class="page-section">
+    <h1>About the Club</h1>
+    <p>The Hawaii Pickleball Club is the premier student organization at the University of Hawaii at Manoa dedicated to the growth of pickleball. We pride ourselves on inclusivity, fitness, and high-level competition.</p>
+    <hr>
+    <h2>History</h2>
+    <p>Starting as a group of four students with a dream in 2024, we have rapidly expanded into a community of over 100 members. Our club has transformed the UHM tennis courts into a hub for "the fastest growing sport in the world."</p>
+    <h2>Sponsors</h2>
+    <ul>
+        <li><strong>JOOLA</strong></li>
+        <li><strong>PickAloha</strong></li>
+        <li><strong>UHM Student Athletics Fund</strong></li>
+    </ul>
+</div>
+
+<div id="open-play" class="page-section">
+    <h1>Open Play Schedule</h1>
+    <div style="background: var(--dark-green); color: white; padding: 40px; border-radius: 15px;">
+        <h2 style="color: var(--neon-green);">Every Tuesday & Thursday</h2>
+        <p style="font-size: 1.5rem;">6:30 PM — 8:30 PM</p>
+        <p><strong>Location:</strong> UHM Tennis Courts</p>
+        <p><strong>Important:</strong> Paddles are provided for all members. <strong>Please remember to bring your Student ID</strong> to access the courts!</p>
+    </div>
+</div>
+
+<div id="tournaments" class="page-section">
+    <h1>Tournament History</h1>
+    <div class="tournament-block">
+        <h2>2026 DUPR California Super Regional</h2>
+        <p>March 7-8, 2026 | The Hub, Silicon Valley</p>
+        <p>Conner, Tristan, Kira, and Jada travelled to Silicon Valley in California, placing 3rd out of 24 teams and securing a bid to the DUPR Collegiate Nationals. Congrats guys!</p>
+        <div class="gallery">
+            <div class="gallery-item" style="background-image: url('https://picsum.photos/400/400?sig=1')"></div>
+            <div class="gallery-item" style="background-image: url('https://picsum.photos/400/400?sig=2')"></div>
+            <div class="gallery-item" style="background-image: url('https://picsum.photos/400/400?sig=3')"></div>
+            <div class="gallery-item" style="background-image: url('https://picsum.photos/400/400?sig=4')"></div>
+        </div>
+    </div>
+    <div class="tournament-block">
+        <h2>2025 APP Selkirk Collegiate Qualifier</h2>
+        <p>November 8-9, 2025 | Arizona Athletic Grounds, Mesa, Arizona</p>
+        <p>Conner, Rhys, Denby, and Jada competed against top-tier talent in the desert heat, showcasing our island grit.</p>
+        <div class="gallery">
+            <div class="gallery-item" style="background-image: url('https://picsum.photos/400/400?sig=5')"></div>
+            <div class="gallery-item" style="background-image: url('https://picsum.photos/400/400?sig=6')"></div>
+            <div class="gallery-item" style="background-image: url('https://picsum.photos/400/400?sig=7')"></div>
+            <div class="gallery-item" style="background-image: url('https://picsum.photos/400/400?sig=8')"></div>
+        </div>
+    </div>
+    <div class="tournament-block">
+        <h2>2025 NCPA Regional Championship</h2>
+        <p>November 18-19, 2025 | Barnes Tennis Center, San Diego, California</p>
+        <p>Representing UHM on the West Coast.</p>
+        <div class="gallery">
+            <div class="gallery-item" style="background-image: url('https://picsum.photos/400/400?sig=9')"></div>
+            <div class="gallery-item" style="background-image: url('https://picsum.photos/400/400?sig=10')"></div>
+            <div class="gallery-item" style="background-image: url('https://picsum.photos/400/400?sig=11')"></div>
+            <div class="gallery-item" style="background-image: url('https://picsum.photos/400/400?sig=12')"></div>
+        </div>
+    </div>
+</div>
+
+<footer>
+    <p>&copy; 2026 HAWAII PICKLEBALL CLUB | UNIVERSITY OF HAWAII AT MANOA</p>
+</footer>
+
+<script>
+    function showPage(pageId) {
+        const sections = document.querySelectorAll('.page-section');
+        sections.forEach(section => section.classList.remove('active'));
+        document.getElementById(pageId).classList.add('active');
+        window.scrollTo(0, 0);
+    }
+</script>
+
+</body>
+</html>
