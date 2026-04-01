@@ -204,6 +204,67 @@
             .hero h1 { font-size: 2.5rem; }
             .sponsor-grid { gap: 40px; }
         }
+        /* News Section Styles */
+        .news-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+        .news-card {
+            background: var(--light-gray);
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            transition: 0.3s;
+            border: 1px solid #eee;
+            display: flex;
+            flex-direction: column;
+        }
+        .news-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--neon-green);
+        }
+        .news-image {
+            width: 100%;
+            height: 200px;
+            background-size: cover;
+            background-position: center;
+        }
+        .news-content {
+            padding: 20px;
+            flex-grow: 1;
+        }
+        .news-date {
+            font-size: 0.8rem;
+            color: var(--mid-green);
+            font-weight: bold;
+            text-transform: uppercase;
+        }
+        .news-title {
+            font-family: 'Archivo Black', sans-serif;
+            font-size: 1.1rem;
+            margin: 10px 0;
+            color: var(--dark-green);
+        }
+        .news-description {
+            font-size: 0.9rem;
+            color: #555;
+            margin-bottom: 20px;
+        }
+        .news-link {
+            text-decoration: none;
+            color: var(--dark-green);
+            font-weight: bold;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            border-bottom: 2px solid var(--neon-green);
+            transition: 0.3s;
+        }
+        .news-link:hover {
+            color: var(--mid-green);
+            border-bottom-color: var(--dark-green);
+        }
     </style>
 </head>
 <body>
@@ -273,13 +334,42 @@
 <div id="about" class="page-section">
     <h1>About the Club</h1>
     <p>The Hawaii Pickleball Club is the premier student organization at the University of Hawaii at Manoa dedicated to the growth of pickleball. We pride ourselves on inclusivity, fitness, and high-level competition.</p>
-    <hr>
-    <h2>History</h2>
-    <p>The Hawaii Pickleball Club was founded in 2024 by our club president and founder, Conner Koga. Ever since, we have rapidly expanded into a community of over 100 members, gained sponsorships, competed in tournaments across the country, and brought pickleball to the Universiry of Hawaii at Manoa. We continue to learn and grow, and can't wait for what's next! </p>
+    
+    <hr style="margin: 40px 0; border: 0; border-top: 1px solid #eee;">
+
+    <h2>Club News & Press</h2>
+    <p>See how we're making waves in the community and the collegiate pickleball scene.</p>
+
+    <div class="news-grid">
+        <div class="news-card">
+            <div class="news-image" style="background-image: url('https://picsum.photos/600/400?sig=20')"></div>
+            <div class="news-content">
+                <div class="news-date">March 15, 2026</div>
+                <div class="news-title">UHM Shines at California Super Regionals</div>
+                <p class="news-description">Our team secured a top-3 finish in Silicon Valley, marking one of the strongest performances by a Hawaii club on the mainland.</p>
+                <a href="https://example.com/article1" target="_blank" class="news-link">Read Full Story <i class="fas fa-external-link-alt"></i></a>
+            </div>
+        </div>
+
+        <div class="news-card">
+            <div class="news-image" style="background-image: url('https://picsum.photos/600/400?sig=21')"></div>
+            <div class="news-content">
+                <div class="news-date">January 10, 2026</div>
+                <div class="news-title">The Fastest Growing Club on Campus</div>
+                <p class="news-description">A deep dive into how Hawaii Pickleball Club reached 100+ members in record time at the Manoa tennis courts.</p>
+                <a href="https://example.com/article2" target="_blank" class="news-link">Read Full Story <i class="fas fa-external-link-alt"></i></a>
+            </div>
+        </div>
+    </div>
+
+    <h2 style="margin-top: 60px;">History</h2>
+    <p>Starting as a group of four students with a dream in 2024, we have rapidly expanded into a community of over 100 members. Our club has transformed the UHM tennis courts into a hub for "the fastest growing sport in the world."</p>
+    
     <h2>Sponsors</h2>
     <ul>
         <li><strong>JOOLA</strong></li>
         <li><strong>PickAloha</strong></li>
+        <li><strong>UHM Student Athletics Fund</strong></li>
     </ul>
 </div>
     
